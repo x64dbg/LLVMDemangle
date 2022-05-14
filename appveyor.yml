@@ -1,0 +1,32 @@
+version: 1.0.{build}
+image: Visual Studio 2015
+build_script:
+- cmd: >-
+    cmake -B build64 -T v140_xp -G "Visual Studio 14 2015 Win64"
+
+    cmake --build build64 --config Release
+
+
+    mkdir LLVMDemangle\bin\x64
+
+    copy build64\Release\LLVMDemangle.dll LLVMDemangle\bin\x64\
+
+    copy build64\Release\LLVMDemangle.lib LLVMDemangle\LLVMDemangle_x64.lib
+
+
+    cmake -B build32 -T v140_xp -G "Visual Studio 14 2015"
+
+    cmake --build build32 --config Release
+
+
+    mkdir LLVMDemangle\bin\x32
+
+    copy build32\Release\LLVMDemangle.dll LLVMDemangle\bin\x32\
+
+    copy build32\Release\LLVMDemangle.lib LLVMDemangle\LLVMDemangle_x86.lib
+
+
+    copy include\LLVMDemangle.h LLVMDemangle\
+artifacts:
+- path: LLVMDemangle/
+  name: LLVMDemangle-%APPVEYOR_BUILD_ID%

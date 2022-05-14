@@ -5,6 +5,7 @@ cmkr-include = "cmake/cmkr.cmake"
 
 [project]
 name = "LLVMDemangle"
+languages = ["CXX"]
 include-before = [
 	"cmake/msvc-static-runtime.cmake",
 	"cmake/msvc-configurations.cmake",

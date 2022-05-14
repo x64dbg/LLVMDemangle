@@ -30,7 +30,10 @@ endif()
 include("cmake/msvc-static-runtime.cmake")
 include("cmake/msvc-configurations.cmake")
 
-project(LLVMDemangle)
+project(LLVMDemangle
+	LANGUAGES
+		CXX
+)
 
 # Target LLVMDemangle
 set(CMKR_TARGET LLVMDemangle)
