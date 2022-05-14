@@ -1,0 +1,22 @@
+# Reference: https://build-cpp.github.io/cmkr/cmake-toml
+[cmake]
+version = "3.15"
+cmkr-include = "cmake/cmkr.cmake"
+
+[project]
+name = "LLVMDemangle"
+include-before = [
+	"cmake/msvc-static-runtime.cmake",
+	"cmake/msvc-configurations.cmake",
+]
+
+[target.LLVMDemangle]
+type = "shared"
+sources = ["llvm/**.cpp", "include/**.h", "LLVMDemangle.cpp"]
+include-directories = ["include"]
+compile-features = ["cxx_std_14"]
+
+[target.LLVMDemangleTool]
+type = "executable"
+sources = ["LLVMDemangleTool.cpp"]
+link-libraries = ["LLVMDemangle"]
